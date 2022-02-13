@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-lg-12">
+        <center><h1>Contact Us</h1></center>
+    </div>
+</div>
+<hr/>
+<div class="container">
+        <form  id="postquery">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="email" name="email" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="query">Query</label>
+                <textarea id="query" name="query" class="form-control"></textarea>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-6 justify-content-center">
+                    <button type="submit" class="querysubmit btn btn-success form-control">Submit</button>
+                </div>
+                <div class="col-md-6 justify-content-center">
+                    <button type="reset" class="btn btn-danger form-control">Reset</button>
+                </div>
+            </div>
+        </form>
+</div>   
+<br/>
+
+<script type="text/javascript">
+    $(function(){
+    $('.querysubmit').on('click',function(e){
+        var data = $('#postquery').serialize();
+        e.preventDefault();
+        $.ajax({
+            url :'/contactus',
+            type: 'POST',
+            data : data,
+            success : function(data){
+                alert(data);
+                window.location.reload()
+            },error : function(err){
+                alert(err);
+            }
+        });
+    });
+});
+</script>
